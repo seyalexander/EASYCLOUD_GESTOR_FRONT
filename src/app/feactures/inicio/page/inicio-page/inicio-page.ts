@@ -161,15 +161,14 @@ export class InicioPage implements OnInit {
           {
             label: 'Marca',
             icon: 'pi pi-tag',
-            routerLink: '/productos/marca',
-            visible: true,
+            routerLink: `/${this.rutaPrincipal}/productos/marca`,
             roles: ['SUPERADMIN', 'ADMIN'],
           },
 
           {
             label: 'Lista Precios',
             icon: 'pi pi-dollar',
-            routerLink: '/productos/lista-precios',
+            routerLink: `/${this.rutaPrincipal}/productos/lista-precios`,
             visible: true,
             roles: ['SUPERADMIN', 'ADMIN'],
           },
@@ -177,7 +176,7 @@ export class InicioPage implements OnInit {
           {
             label: 'Artículos',
             icon: 'pi pi-shopping-bag',
-            routerLink: '/productos/articulos',
+            routerLink: `/${this.rutaPrincipal}/productos/articulos`, 
             visible: true,
             roles: ['SUPERADMIN', 'ADMIN'],
           },
