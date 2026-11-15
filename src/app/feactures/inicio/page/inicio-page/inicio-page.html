@@ -1,0 +1,107 @@
+<div class="flex h-screen bg-[#F3F4F6]">
+
+  <!-- SIDEBAR -->
+  <aside class="w-64 bg-[#002955] flex flex-col">
+
+    <!-- LOGO -->
+    <div class="flex items-center gap-3 px-5 py-4 border-b border-gray-200">
+      <span class="text-lg font-semibold text-white">
+        GESTIÓN <span class="text-[#00D1AE]">GENERAL</span>
+      </span>
+    </div>
+
+    <!-- MENU -->
+    <nav class="flex-1 overflow-y-auto px-3 py-4">
+
+      <ng-container *ngFor="let group of menuFiltrado()">
+
+        <!-- ITEM SIMPLE -->
+        <ng-container *ngIf="!group.items && isVisible(group)">
+
+          <a [routerLink]="group.routerLink" routerLinkActive="bg-sky-50 text-sky-600" pRipple
+            class="flex items-center gap-3 px-3 py-2 rounded-lg text-[#F1F5F9] hover:bg-[#00D1AE] transition">
+
+            <i [class]="group.icon"></i>
+
+            <span>{{ group.label }}</span>
+
+            <p-badge *ngIf="group.badge" class="ml-auto" [value]="group.badge">
+            </p-badge>
+
+          </a>
+
+        </ng-container>
+
+
+        <!-- GRUPO -->
+        <ng-container *ngIf="group.items && isVisible(group)">
+
+          <p class="text-xs text-[#00D1AE] uppercase mt-5 mb-2 px-2">
+            {{ group.label }}
+          </p>
+
+          <ul class="space-y-1">
+
+            <li *ngFor="let item of group.items">
+
+              <a *ngIf="isVisible(item)" [routerLink]="item.routerLink" routerLinkActive="bg-sky-50 text-sky-600"
+                pRipple
+                class="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-[#F1F5F9] hover:bg-[#00D1AE] transition">
+
+                <i [class]="item.icon"></i>
+
+                <span>{{ item.label }}</span>
+
+                <p-badge *ngIf="item.badge" class="ml-auto" [value]="item.badge">
+                </p-badge>
+
+                <span *ngIf="item.shortcut" class="ml-auto text-xs text-gray-400">
+                  {{ item.shortcut }}
+                </span>
+
+              </a>
+
+            </li>
+
+          </ul>
+
+        </ng-container>
+
+      </ng-container>
+
+    </nav>
+
+
+    <!-- USUARIO -->
+    <div class="border-t border-[#22478B] p-4 flex items-center justify-between gap-3 w-full relative">
+
+      <!-- Imagen -->
+      <img class="w-10 h-10 rounded-full" src="https://i.pravatar.cc/100" />
+
+      <!-- Info usuario -->
+      <div class="flex-1">
+        <p class="text-sm font-semibold text-white">Alexander</p>
+        <p class="text-xs text-gray-300">Administrador</p>
+      </div>
+
+       <p-button
+      icon="pi pi-cog"
+      rounded
+      text
+      severity="secondary"
+      (onClick)="logout()">
+    </p-button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- CONTENIDO -->
+  <main class="flex-1 overflow-auto p-4">
+
+    <router-outlet></router-outlet>
+
+  </main>
+
+</div>

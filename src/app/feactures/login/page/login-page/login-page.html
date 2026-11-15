@@ -1,0 +1,46 @@
+<div class="min-h-screen flex items-center justify-center bg-[#F1F5F9]">
+  <div class="w-full max-w-md px-4">
+    <div class="bg-white rounded-2xl shadow p-8 flex flex-col gap-6">
+
+      <div class="text-center">
+        <div class="w-14 h-14 mx-auto flex items-center justify-center rounded-full bg-blue-100 mb-3">
+          <i class="pi pi-user text-2xl text-[#002955]"></i>
+        </div>
+
+        <h2 class="text-2xl font-semibold text-[#002955]">Iniciar Sesión</h2>
+        <p class="text-gray-500 text-sm">Accede a tu sistema</p>
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label class="text-sm font-medium text-gray-700">Usuario</label>
+
+        <input pInputText type="text" id="username" placeholder="Username" name="username" [(ngModel)]="login.usuario"
+          #username="ngModel" [invalid]="username.touched"  required />
+        @if (username.invalid && (username.touched)) {
+        <p-message severity="error" size="small" variant="simple">Username is required.</p-message>
+        }
+      </div>
+
+      <div class="flex flex-col gap-2">
+        <label class="text-sm font-medium text-gray-700">Contraseña</label>
+
+        <p-password [(ngModel)]="login.password" [toggleMask]="true" [feedback]="false"
+          placeholder="Ingresa tu contraseña" styleClass="w-full" inputStyleClass="w-full py-2 rounded-lg">
+        </p-password>
+      </div>
+
+      <p-button label="Ingresar" icon="pi pi-sign-in" class="w-full" styleClass="w-full" [loading]="loading"
+        [disabled]="!login.usuario || !login.password" (onClick)="loginUsuario()">
+      </p-button>
+
+      <div class="text-center text-sm text-gray-500">
+        ¿Olvidaste tu contraseña?
+        <span class="text-blue-600 cursor-pointer hover:underline">
+          Recuperar
+        </span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-toast></p-toast>

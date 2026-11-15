@@ -1,0 +1,71 @@
+<p-dialog [(visible)]="visibleEditar" [modal]="true" [style]="{ width: '28rem' }" [draggable]="false"
+  [resizable]="false" (onHide)="volverLista()">
+
+  <!-- HEADER -->
+  <ng-template #header>
+    <div class="flex align-items-center gap-3">
+      <div class="h-12 w-12 bg-yellow-100 text-yellow-700 p-2 rounded flex items-center justify-center">
+        <i class="pi pi-pencil text-lg"></i>
+      </div>
+
+      <div class="flex flex-col">
+        <span class="font-semibold text-lg">Editar Tipo Documento</span>
+        <small class="text-500">Actualice la información</small>
+      </div>
+    </div>
+  </ng-template>
+
+  <!-- CONTENIDO -->
+  <div class="grid grid-cols-2 mt-8 gap-2 w-full">
+    <div class="col-span-2 flex flex-col gap-8 ">
+      <div class="card flex w-full">
+        <p-floatlabel class="w-full">
+          <input id="username" class="w-full" pInputText [(ngModel)]="monedaEditar.descripcion"
+            autocomplete="off" />
+          <label for="username">Descripción</label>
+        </p-floatlabel>
+      </div>
+      <div class="card flex w-full">
+        <p-floatlabel class="w-full">
+          <input id="codigoSunat" class="w-full" pInputText [(ngModel)]="monedaEditar.simbolo"
+            autocomplete="off" />
+          <label for="codigoSunat">Símbolo</label>
+        </p-floatlabel>
+      </div>
+    </div>
+
+    <div class="col-span-2 flex gap-8 mt-6">
+      <div class="card flex w-full">
+        <div class="w-full  flex flex-col">
+          <label class="font-medium">predeterminado</label>
+          <p-select [options]="principalMoneda" optionLabel="label" optionValue="value"
+            [(ngModel)]="monedaEditar.esPrincipal" placeholder="Seleccione" appendTo="body">
+          </p-select>
+        </div>
+      </div>
+      <div class="card flex w-full">
+        <div class="w-full flex flex-col">
+          <label class="font-medium">Estado</label>
+          <p-select [options]="estadosMoneda" optionLabel="label" optionValue="value"
+            [(ngModel)]="monedaEditar.estado" placeholder="Seleccione" appendTo="body">
+          </p-select>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <ng-template #footer>
+    <div class="flex justify-end items-center w-full">
+      <div class="flex gap-2">
+        <p-button label="Cancelar" icon="pi pi-times" severity="secondary" [text]="true" (click)="volverLista()">
+        </p-button>
+        <p-button label="Guardar" icon="pi pi-check" severity="info" [loading]="loading" (click)="editar()">
+        </p-button>
+      </div>
+    </div>
+  </ng-template>
+</p-dialog>
+
+<p-toast />

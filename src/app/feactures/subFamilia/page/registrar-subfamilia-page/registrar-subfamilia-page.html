@@ -1,0 +1,57 @@
+<p-dialog [(visible)]="visible" [modal]="true" (onHide)="volverLista()" [style]="{ width: '32rem' }" [draggable]="false" [resizable]="false">
+  <ng-template #header>
+    <div class="flex items-center gap-2">
+      <i class="pi pi-sitemap text-xl text-primary"></i>
+      <span class="font-semibold text-lg">Registrar Subfamilia</span>
+    </div>
+  </ng-template>
+
+  <div class="flex flex-col gap-4 mt-2">
+
+    <!-- SELECCIONAR FAMILIA -->
+    <div class="flex flex-col gap-1">
+      <label class="font-medium text-sm text-slate-700">Familia Principal</label>
+      <p-select 
+        [options]="listaFamilias" 
+        [(ngModel)]="subfamilia.idFamilia" 
+        optionLabel="descripcion" 
+        optionValue="idFamilia" 
+        placeholder="Seleccione una familia" 
+        [filter]="true"
+        appendTo="body"
+        styleClass="w-full">
+      </p-select>
+    </div>
+
+    <!-- DESCRIPCIÓN -->
+    <div class="flex flex-col gap-1">
+      <label class="font-medium text-sm text-slate-700">Descripción</label>
+      <input pInputText
+             [(ngModel)]="subfamilia.familiaDescripcion"
+             name="descripcion"
+             placeholder="Ej: ACEITES VEGETALES, GASEOSAS, .." />
+    </div>
+
+    <!-- IMAGEN URL (Opcional por defecto) -->
+    <div class="flex flex-col gap-1">
+      <label class="font-medium text-sm text-slate-700">URL de Imagen (Opcional)</label>
+      <input pInputText
+             [(ngModel)]="subfamilia.imagenUrl"
+             name="imagenUrl"
+             placeholder="https://ejemplo.com/imagen.jpg" />
+    </div>
+
+  </div>
+
+  <ng-template #footer>
+    <div class="flex justify-end gap-2 pt-2">
+      <p-button label="Cancelar" icon="pi pi-times" severity="secondary"
+        [text]="true" (click)="volverLista()">
+      </p-button>
+
+      <p-button label="Guardar" icon="pi pi-check" severity="success"
+        (click)="guardar()">
+      </p-button>
+    </div>
+  </ng-template>
+</p-dialog>
